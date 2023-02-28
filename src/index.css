@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar {
+  animation-name: nav;
+  animation-duration: 0.5s;
+}
+.nav {
+  background-color: transparent;
+}
+.toggleBg {
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
+@keyframes nav {
+  from {
+    transform: translateY(-200px);
+  }
+  to {
+    transform: translateY(0.4px);
+  }
+}
+.houses-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-column-gap: 30px;
+  grid-row-gap: 50px;
+}
