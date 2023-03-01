@@ -87,7 +87,7 @@ function Houses() {
                 <p className="text-[#ACACAC] my-1">{data.location[2].name}</p>
                 <p className="text-[#8CB9D7] font-semibold text-xl">
                   {" "}
-                  ₦ {data.price}{" "}
+                  ₦ {data.price.toLocaleString()}{" "}
                 </p>
               </article>
             );
