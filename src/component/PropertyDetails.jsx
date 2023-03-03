@@ -17,8 +17,7 @@ function PropertyDetails() {
         url: `https://bayut.p.rapidapi.com/properties/detail`,
         params: { externalID: `${housesId}` },
         headers: {
-          "X-RapidAPI-Key":
-            "6d1f635362msh02f19cfd92582efp1b0e92jsn3b55a1d5c903",
+          "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
           "X-RapidAPI-Host": "bayut.p.rapidapi.com",
         },
       };
