@@ -5,7 +5,7 @@ import mobileHero from "../assets/mobileHero.png";
 import { AiOutlineRight } from "react-icons/ai";
 import { AiOutlineLeft } from "react-icons/ai";
 
-function Main({}) {
+function Main() {
   const [activeImg, setActiveImg] = useState(0);
   const data = [
     {
@@ -39,7 +39,9 @@ function Main({}) {
     });
   };
   return (
-    <main className="lg:h-screen font-poppins lg:flex max-w-[2000px] mx-auto">
+    <main
+      className={`lg:h-screen font-poppins lg:flex max-w-[2000px] mx-auto `}
+    >
       <div className="bg-[#C4C4C426] h-full lg:w-[60%] w-full pt-24  md:pt-48 pb-11 lg:pb-0">
         <h1 className="font-extrabold tracking-wide text-center text-3xl leading-[1.5] lg:hidden md:text-5xl sm:text-4xl px-5">
           FIND YOUR DREAM<br></br> HOME
@@ -51,7 +53,7 @@ function Main({}) {
         </p>
         <img
           src={mobileHero}
-          className="mt-7 h-[400px] w-[80%] mx-auto lg:hidden max-w-[500px]"
+          className="mt-7 h-[400px] w-[80%] mx-auto lg:hidden max-w-[500px] transition-all"
           alt=""
         />
       </div>

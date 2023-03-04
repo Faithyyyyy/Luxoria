@@ -72,7 +72,7 @@ function Testimonials() {
             What Our Customers are saying?
           </h2>
         </div>
-        <div className="flex gap-12 items-center  xl:gap-24">
+        <div className="relative flex gap-12 items-center  xl:gap-24">
           <div className="w-[516px] relative hidden maxW:block ">
             <img src={HeroImg2} alt="" className="w-[416px]" />
             <div className="flex absolute  bottom-0   right-0">
@@ -90,7 +90,7 @@ function Testimonials() {
               </div>
             </div>
           </div>
-          <div className="mt-6 max-w-[500px] mx-auto maxW:mx-0">
+          <div className="testimony mt-6 max-w-[500px] mx-auto maxW:mx-0">
             <img src={qutoe} alt="" className=" mb-4 w-16" />
             <p>{testimonialData[activeTestimony].testimony}</p>
             <div className="flex flex-col maxW:flex-row maxW:items-center justify-between gap-5 mt-5">

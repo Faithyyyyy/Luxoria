@@ -5,12 +5,21 @@
 .navbar {
   animation-name: nav;
   animation-duration: 0.5s;
+  transition: all 5s ease-in-out;
 }
 .nav {
   background-color: transparent;
 }
 .toggleBg {
   background-color: hsla(0, 0%, 100%, 0.9);
+}
+.btn {
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
+.modal {
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  top: 0;
 }
 @keyframes nav {
   from {
@@ -20,9 +29,48 @@
     transform: translateY(0.4px);
   }
 }
+
 .houses-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-column-gap: 30px;
   grid-row-gap: 50px;
+}
+.thumb {
+  border: 0px;
+}
+.selected {
+  border: 0px;
+}
+.slide {
+  height: 450px;
+}
+.slide img {
+  height: 100%;
+}
+.carousel .thumb.selected,
+.carousel .thumb:hover {
+  border: 0px;
+  /* opacity: 50%; */
+}
+.carousel .thumb {
+  border: 0px;
+  height: 80px;
+}
+.carousel .thumb.selected {
+  border: 1px solid #8cb9d7;
+  border-radius: 5px;
+  opacity: 80%;
+}
+.carousel .thumb:hover {
+  opacity: 80%;
+}
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.carousel .thumb img {
+  height: 100%;
 }

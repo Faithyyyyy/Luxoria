@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
-  const [navIcon, setNavIcon] = useState(false);
+function Navbar({ navIcon, handleNav }) {
   const [toggle, setToggle] = useState(false);
-  const handleNav = () => {
-    setNavIcon(!navIcon);
+  const [closeNavbar, setcloseNavbar] = useState(false);
+  const closeNav = () => {
+    closeNavbar(true);
   };
   const changeBg = () => {
     if (window.scrollY >= 80) {
@@ -35,7 +35,7 @@ function Navbar() {
               </h2>
             </Link>
             <Link to="houses">Find Home</Link>
-            <Link to="community">Community</Link>
+            <Link to="ommunity">Community</Link>
           </nav>
           <div className="flex gap-8 items-center">
             <a href="/">Register</a>
@@ -49,9 +49,13 @@ function Navbar() {
         </div>
       </div>
       {/* Mobile Render */}
-      <div className="md:hidden bg-[#C4C4C426]">
+      <div className="md:hidden bg-[#C4C4C426] transition-all">
         <div className="flex justify-between px-5 pt-8">
-          <h2 className="text-customDarkBlue font-manrope font-black text-xl tracking-[6px]  leading-[1] ">
+          <h2
+            className={`text-customDarkBlue font-manrope font-black text-xl tracking-[6px]  leading-[1] ${
+              closeNavbar && "hidden"
+            }`}
+          >
             LUXORIA{" "}
             <span className="font-medium block tracking-[4.5px] text-sm lg:tracking-[6.5px] ">
               PROPERTIES
@@ -85,8 +89,12 @@ function Navbar() {
             navIcon ? "block" : "hidden"
           } navbar`}
         >
-          <a href="">Find Home</a>
-          <a href="">Community</a>
+          <Link to="/houses" onClick={closeNav}>
+            Find Home
+          </Link>
+          <Link to="community" onClick={closeNav}>
+            Community
+          </Link>
         </div>
       </div>
       {/* Mobile Render */}

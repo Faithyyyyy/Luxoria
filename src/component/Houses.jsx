@@ -22,14 +22,9 @@ function Houses() {
 
   today = mm + dd + yyyy;
 
-  useEffect(() => {
-    localStorage.setItem("date", today);
-    window.localStorage.setItem("links", JSON.stringify(dataset));
-  }, [dataset]);
-
   const fetchData = async () => {
     let date = localStorage.getItem("date");
-    if (date !== today || dataset.length < 1) {
+    if (dataset.length < 1) {
       setLoading(true);
       try {
         const response = await axios.get(url, {
@@ -40,6 +35,7 @@ function Houses() {
         });
         const data = response.data.hits;
         setDataset(data);
+        console.log(dataset);
       } catch (error) {
         setError(true);
       }
@@ -50,6 +46,12 @@ function Houses() {
   useEffect(() => {
     fetchData();
   }, []);
+  // to set the fetched items on first render and also update every single day from the server. This important for optimisation
+  useEffect(() => {
+    localStorage.setItem("date", today);
+    window.localStorage.setItem("links", JSON.stringify(dataset));
+  }, [dataset]);
+
   if (error) {
     return (
       <div className="flex flex-col justify-center pt-60 items-center font-poppins">
@@ -85,14 +87,14 @@ function Houses() {
           dataset.map((data) => {
             return (
               <article
-                className="w-full  smallW:max-w-[416px] mx-auto cursor-pointer "
+                className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
                 key={data.id}
               >
                 <Link to={`/houses/${data.externalID}`}>
                   <div className="w-full  relative mb-4">
                     <img
                       src={data.coverPhoto.url}
-                      className={`w-full h-[270px] ${
+                      className={`w-[100%] h-[270px] ${
                         Load && "bg-gray-300 animate-pulse"
                       } `}
                       alt=""
