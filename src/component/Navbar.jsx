@@ -33,9 +33,9 @@ function Navbar({ navIcon, handleNav }) {
                 </span>
               </h2>
             </Link>
-            <Link to="houses">Find Home</Link>
+            <Link to="/">Home</Link>
+            <Link to="houses">Properties</Link>
             <Link>Blog</Link>
-            <Link>Community</Link>
           </nav>
           <div className="">
             <a
