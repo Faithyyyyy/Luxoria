@@ -17,7 +17,7 @@ function ModalImages({ handleCloseModal, highlitedImgs }) {
         showStatus={false}
         showIndicators={false}
       >
-        {highlitedImgs.slice(0, 4).map((img) => {
+        {highlitedImgs.slice(0, 7).map((img) => {
           return (
             <img
               id={img.id}

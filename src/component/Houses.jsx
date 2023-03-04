@@ -5,6 +5,8 @@ import { baseUrL } from "./Fetch";
 import BounceLoader from "react-spinners/BounceLoader";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import Filter from "./Filter";
+import ErrorPage from "./Error";
 
 const url = `${baseUrL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=24`;
 
@@ -14,17 +16,19 @@ function Houses() {
   );
   const [Load, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const [checkFilteredItems, setCheckFilteredItems] = useState(false);
+  const [FilteredItems, setFilteredItems] = useState([]);
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   let yyyy = today.getFullYear();
-
   today = mm + dd + yyyy;
+  console.log(today);
 
+  // Initial fetching of data
   const fetchData = async () => {
     let date = localStorage.getItem("date");
-    if (dataset.length < 1) {
+    if (today === date && dataset.length < 1) {
       setLoading(true);
       try {
         const response = await axios.get(url, {
@@ -35,7 +39,6 @@ function Houses() {
         });
         const data = response.data.hits;
         setDataset(data);
-        console.log(dataset);
       } catch (error) {
         setError(true);
       }
@@ -46,33 +49,28 @@ function Houses() {
   useEffect(() => {
     fetchData();
   }, []);
+
   // to set the fetched items on first render and also update every single day from the server. This important for optimisation
   useEffect(() => {
     localStorage.setItem("date", today);
     window.localStorage.setItem("links", JSON.stringify(dataset));
   }, [dataset]);
 
+  // A function to filter the prices of the properties
+  const filterPropertiesPrice = (minPrice, maxPrice) => {
+    // const savedData = JSON.parse(localStorage.getItem("links"));
+    setCheckFilteredItems(true);
+    const newDataSet = dataset.filter((properties) => {
+      return properties.price >= minPrice && properties.price <= maxPrice;
+    });
+    setFilteredItems(newDataSet);
+  };
   if (error) {
-    return (
-      <div className="flex flex-col justify-center pt-60 items-center font-poppins">
-        <h5 className="text-2xl sm:text-5xl text-bold font-poppins text-[#254A80]">
-          We Apologize
-        </h5>
-        <p className="text-xl md:text-5xl mt-6 md:mt-8">
-          Something went wrong..
-        </p>
-        <Link
-          to="/"
-          className="bg-gradient-to-r from-[#5477ab] text-white to-[#8CB9D7] px-6 rounded-[30px] mt-14 py-4"
-        >
-          Go to Homepage
-        </Link>
-      </div>
-    );
+    return <ErrorPage />;
   }
   return (
     <>
-      <section className="pb-28 houses-container max-w-7xl mx-auto xl:px-0 pt-16 md:pt-36 font-poppins px-5 grid gap-12">
+      <section className="pb-28  max-w-7xl mx-auto xl:px-0 pt-16 md:pt-36 font-poppins px-5 grid gap-12">
         {Load ? (
           <div className=" w-full flex items-center justify-center mt-36">
             <BounceLoader
@@ -84,40 +82,92 @@ function Houses() {
             />
           </div>
         ) : (
-          dataset.map((data) => {
-            return (
-              <article
-                className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
-                key={data.id}
-              >
-                <Link to={`/houses/${data.externalID}`}>
-                  <div className="w-full  relative mb-4">
-                    <img
-                      src={data.coverPhoto.url}
-                      className={`w-[100%] h-[270px] ${
-                        Load && "bg-gray-300 animate-pulse"
-                      } `}
-                      alt=""
-                      loading="lazy"
-                    />
-                    <div
-                      className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
-                        !Load && "bg-red-500"
-                      }`}
-                    >
-                      {data.category[1].nameSingular}
-                    </div>
-                  </div>
-                </Link>
-                <h6 className="font-bold text-xl">{data.location[3].name}</h6>
-                <p className="text-[#ACACAC] my-1">{data.location[2].name}</p>
-                <p className="text-[#8CB9D7] font-semibold text-xl">
-                  {" "}
-                  ₦ {data.price.toLocaleString()}{" "}
-                </p>
-              </article>
-            );
-          })
+          <div className="xl:flex gap-5">
+            <Filter
+              dataset={dataset}
+              FilteredItems={FilteredItems}
+              filterPropertiesPrice={filterPropertiesPrice}
+            />
+            <div className="houses-container flex-grow">
+              {checkFilteredItems
+                ? FilteredItems.map((data) => {
+                    return (
+                      <article
+                        className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
+                        key={data.id}
+                      >
+                        <Link to={`/houses/${data.externalID}`}>
+                          <div className="w-full  relative mb-4">
+                            <img
+                              src={data.coverPhoto.url}
+                              className={`w-[100%] h-[270px] ${
+                                Load && "bg-gray-300 animate-pulse"
+                              } `}
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
+                                !Load && "bg-red-500"
+                              }`}
+                            >
+                              {data.category[1].nameSingular}
+                            </div>
+                          </div>
+                        </Link>
+                        <h6 className="font-bold text-xl">
+                          {data.location[3].name}
+                        </h6>
+                        <p className="text-[#ACACAC] my-1">
+                          {data.location[2].name}
+                        </p>
+                        <p className="text-[#8CB9D7] font-semibold text-xl">
+                          {" "}
+                          ₦ {data.price.toLocaleString()}{" "}
+                        </p>
+                      </article>
+                    );
+                  })
+                : dataset.map((data) => {
+                    return (
+                      <article
+                        className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
+                        key={data.id}
+                      >
+                        <Link to={`/houses/${data.externalID}`}>
+                          <div className="w-full  relative mb-4">
+                            <img
+                              src={data.coverPhoto.url}
+                              className={`w-[100%] h-[270px] ${
+                                Load && "bg-gray-300 animate-pulse"
+                              } `}
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
+                                !Load && "bg-red-500"
+                              }`}
+                            >
+                              {data.category[1].nameSingular}
+                            </div>
+                          </div>
+                        </Link>
+                        <h6 className="font-bold text-xl">
+                          {data.location[3].name}
+                        </h6>
+                        <p className="text-[#ACACAC] my-1">
+                          {data.location[2].name}
+                        </p>
+                        <p className="text-[#8CB9D7] font-semibold text-xl">
+                          {" "}
+                          ₦ {data.price.toLocaleString()}{" "}
+                        </p>
+                      </article>
+                    );
+                  })}
+            </div>
+          </div>
         )}
       </section>
       <Footer />
