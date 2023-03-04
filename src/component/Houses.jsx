@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Filter from "./Filter";
 import ErrorPage from "./Error";
+import { motion, AnimatePresence } from "framer-motion";
 
 const url = `${baseUrL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=24`;
 
@@ -92,40 +93,46 @@ function Houses() {
               {checkFilteredItems
                 ? FilteredItems.map((data) => {
                     return (
-                      <article
+                      <motion.article
+                        layout
+                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        // exit={{ opacity: 0 }}
                         className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
                         key={data.id}
                       >
-                        <Link to={`/houses/${data.externalID}`}>
-                          <div className="w-full  relative mb-4">
-                            <img
-                              src={data.coverPhoto.url}
-                              className={`w-[100%] h-[270px] ${
-                                Load && "bg-gray-300 animate-pulse"
-                              } `}
-                              alt=""
-                              loading="lazy"
-                            />
-                            <div
-                              className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
-                                !Load && "bg-red-500"
-                              }`}
-                            >
-                              {data.category[1].nameSingular}
+                        <AnimatePresence>
+                          <Link to={`/houses/${data.externalID}`}>
+                            <div className="w-full  relative mb-4">
+                              <img
+                                src={data.coverPhoto.url}
+                                className={`w-[100%] h-[270px] ${
+                                  Load && "bg-gray-300 animate-pulse"
+                                } `}
+                                alt=""
+                                loading="lazy"
+                              />
+                              <div
+                                className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
+                                  !Load && "bg-red-500"
+                                }`}
+                              >
+                                {data.category[1].nameSingular}
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                        <h6 className="font-bold text-xl">
-                          {data.location[3].name}
-                        </h6>
-                        <p className="text-[#ACACAC] my-1">
-                          {data.location[2].name}
-                        </p>
-                        <p className="text-[#8CB9D7] font-semibold text-xl">
-                          {" "}
-                          ₦ {data.price.toLocaleString()}{" "}
-                        </p>
-                      </article>
+                          </Link>
+                          <h6 className="font-bold text-xl">
+                            {data.location[3].name}
+                          </h6>
+                          <p className="text-[#ACACAC] my-1">
+                            {data.location[2].name}
+                          </p>
+                          <p className="text-[#8CB9D7] font-semibold text-xl">
+                            {" "}
+                            ₦ {data.price.toLocaleString()}{" "}
+                          </p>
+                        </AnimatePresence>
+                      </motion.article>
                     );
                   })
                 : dataset.map((data) => {

@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
 function Navbar({ navIcon, handleNav }) {
   const [toggle, setToggle] = useState(false);
   const [closeNavbar, setcloseNavbar] = useState(false);
@@ -35,15 +34,15 @@ function Navbar({ navIcon, handleNav }) {
               </h2>
             </Link>
             <Link to="houses">Find Home</Link>
-            <Link to="ommunity">Community</Link>
+            <Link>Blog</Link>
+            <Link>Community</Link>
           </nav>
-          <div className="flex gap-8 items-center">
-            <a href="/">Register</a>
+          <div className="">
             <a
-              href="/"
+              href=""
               className="bg-customDarkBlue text-white h-10 flex px-6 rounded-sm items-center"
             >
-              Login
+              Contact Us
             </a>
           </div>
         </div>

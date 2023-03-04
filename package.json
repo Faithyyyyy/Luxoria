@@ -16,7 +16,6 @@
     "react-icons": "^4.7.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.8.1",
-    "react-slideshow-image": "^4.2.1",
     "react-spinners": "^0.13.8"
   },
   "devDependencies": {

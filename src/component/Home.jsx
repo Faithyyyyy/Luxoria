@@ -3,7 +3,8 @@ import WhyUs from "./WhyUsSection";
 import Card from "./Cards";
 import Testimonials from "./Testimonials";
 import Footer from "./Footer";
-function Home({ navIcon }) {
+import Blog from "./BlogSection";
+function Home({ navIcon, ref }) {
   return (
     <div
       className={`${navIcon ? "h-[630px]" : ""} ${
@@ -14,6 +15,7 @@ function Home({ navIcon }) {
       <WhyUs />
       <Card />
       <Testimonials />
+      <Blog ref={ref} />
       <Footer />
     </div>
   );
