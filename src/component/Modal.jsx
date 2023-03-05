@@ -20,7 +20,7 @@ function ModalImages({ handleCloseModal, highlitedImgs }) {
         {highlitedImgs.slice(0, 7).map((img) => {
           return (
             <img
-              id={img.id}
+              key={img.id}
               src={img.url}
               alt=""
               className="h-[80px] w-[400px] "

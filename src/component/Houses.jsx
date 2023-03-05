@@ -33,9 +33,7 @@ function Houses() {
       try {
         const response = await axios.get(url, {
           headers: {
-            // "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
-            "X-RapidAPI-Key":
-              "22470cca72msh4af501ce18d777dp147ec9jsnfcb9370e356d",
+            "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
             "X-RapidAPI-Host": "bayut.p.rapidapi.com",
           },
         });
@@ -94,46 +92,40 @@ function Houses() {
               {checkFilteredItems
                 ? FilteredItems.map((data) => {
                     return (
-                      <motion.article
-                        layout
-                        animate={{ opacity: 1 }}
-                        initial={{ opacity: 0 }}
-                        // exit={{ opacity: 0 }}
+                      <article
                         className="w-full max-w-[300px] smallW:max-w-[400px] mx-auto cursor-pointer "
                         key={data.id}
                       >
-                        <AnimatePresence>
-                          <Link to={`/houses/${data.externalID}`}>
-                            <div className="w-full  relative mb-4">
-                              <img
-                                src={data.coverPhoto.url}
-                                className={`w-[100%] h-[270px] ${
-                                  Load && "bg-gray-300 animate-pulse"
-                                } `}
-                                alt=""
-                                loading="lazy"
-                              />
-                              <div
-                                className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
-                                  !Load && "bg-red-500"
-                                }`}
-                              >
-                                {data.category[1].nameSingular}
-                              </div>
+                        <Link to={`/houses/${data.externalID}`}>
+                          <div className="w-full  relative mb-4">
+                            <img
+                              src={data.coverPhoto.url}
+                              className={`w-[100%] h-[270px] ${
+                                Load && "bg-gray-300 animate-pulse"
+                              } `}
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              className={`bg-white px-5 py-2 absolute shadow bottom-0 left-0 ${
+                                !Load && "bg-red-500"
+                              }`}
+                            >
+                              {data.category[1].nameSingular}
                             </div>
-                          </Link>
-                          <h6 className="font-bold text-xl">
-                            {data.location[3].name}
-                          </h6>
-                          <p className="text-[#ACACAC] my-1">
-                            {data.location[2].name}
-                          </p>
-                          <p className="text-[#8CB9D7] font-semibold text-xl">
-                            {" "}
-                            ₦ {data.price.toLocaleString()}{" "}
-                          </p>
-                        </AnimatePresence>
-                      </motion.article>
+                          </div>
+                        </Link>
+                        <h6 className="font-bold text-xl">
+                          {data.location[3].name}
+                        </h6>
+                        <p className="text-[#ACACAC] my-1">
+                          {data.location[2].name}
+                        </p>
+                        <p className="text-[#8CB9D7] font-semibold text-xl">
+                          {" "}
+                          ₦ {data.price.toLocaleString()}{" "}
+                        </p>
+                      </article>
                     );
                   })
                 : dataset.map((data) => {

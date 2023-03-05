@@ -6,17 +6,16 @@ import { AiOutlineLeft } from "react-icons/ai";
 import { baseUrL } from "./Fetch";
 import Footer from "./Footer";
 import ModalImages from "./Modal";
-
+import ErrorPage from "./Error";
+ErrorPage;
 function PropertyDetails() {
   const [Load, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  // const [CloseModal, setCloseModal] = useState(false);
   const [homeDetails, setHomeDetails] = useState(
     JSON.parse(localStorage.getItem("details") || "[]")
   );
   const { housesId } = useParams();
-  console.log(housesId);
   const url = `${baseUrL}/properties/detail?externalID=${housesId}`;
 
   // to set the fetched items on first render and also update every single day from the server. This important for optimisation
@@ -31,8 +30,7 @@ function PropertyDetails() {
       setLoading(true);
       const response = await axios(url, {
         headers: {
-          "X-RapidAPI-Key":
-            "22470cca72msh4af501ce18d777dp147ec9jsnfcb9370e356d",
+          "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
           "X-RapidAPI-Host": "bayut.p.rapidapi.com",
         },
       });
@@ -50,22 +48,7 @@ function PropertyDetails() {
   }, []);
 
   if (error) {
-    return (
-      <div className="flex flex-col justify-center pt-60 items-center font-poppins">
-        <h5 className="text-2xl sm:text-5xl text-bold font-poppins text-[#254A80]">
-          We Apologize
-        </h5>
-        <p className="text-xl md:text-5xl mt-6 md:mt-8">
-          Something went wrong..
-        </p>
-        <Link
-          to="/"
-          className="bg-gradient-to-r from-[#5477ab] text-white to-[#8CB9D7] px-6 rounded-[30px] mt-14 py-4"
-        >
-          Go to Homepage
-        </Link>
-      </div>
-    );
+    return <ErrorPage />;
   }
   // Logic for the MOREIMAGES btn
   const handleOpenModal = () => {
