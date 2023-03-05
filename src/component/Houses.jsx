@@ -28,7 +28,7 @@ function Houses() {
   // Initial fetching of data
   const fetchData = async () => {
     let date = localStorage.getItem("date");
-    if (today === date && dataset.length < 1) {
+    if (dataset.length < 1) {
       setLoading(true);
       try {
         const response = await axios.get(url, {
