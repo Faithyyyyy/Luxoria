@@ -91,11 +91,11 @@ function Navbar({ navIcon, handleNav }) {
             navIcon ? "block" : "hidden"
           } navbar`}
         >
-          <Link to="/houses" onClick={closeNav}>
-            Find Home
+          <Link to="" onClick={closeNav}>
+            Home
           </Link>
-          <Link to="community" onClick={closeNav}>
-            Community
+          <Link to="/houses" onClick={closeNav}>
+            Properties
           </Link>
         </div>
       </div>
