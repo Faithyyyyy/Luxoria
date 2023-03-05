@@ -31,7 +31,8 @@ function PropertyDetails() {
       setLoading(true);
       const response = await axios(url, {
         headers: {
-          "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+          "X-RapidAPI-Key":
+            "22470cca72msh4af501ce18d777dp147ec9jsnfcb9370e356d",
           "X-RapidAPI-Host": "bayut.p.rapidapi.com",
         },
       });
