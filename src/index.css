@@ -29,7 +29,9 @@
     transform: translateY(0.4px);
   }
 }
-
+.nav .active {
+  border-bottom: 2px solid #8cb9d7;
+}
 .houses-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));

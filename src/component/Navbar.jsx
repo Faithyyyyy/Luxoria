@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 function Navbar({ navIcon, handleNav }) {
   const [toggle, setToggle] = useState(false);
   const [closeNavbar, setcloseNavbar] = useState(false);
@@ -33,9 +33,12 @@ function Navbar({ navIcon, handleNav }) {
                 </span>
               </h2>
             </Link>
-            <Link to="/">Home</Link>
-            <Link to="houses">Properties</Link>
-            <Link>Blog</Link>
+            <NavLink to="/" className="text-lg">
+              Home
+            </NavLink>
+            <NavLink to="houses" className="text-lg">
+              Properties
+            </NavLink>
           </nav>
           <div className="">
             <a

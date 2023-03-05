@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Filter from "./Filter";
 import ErrorPage from "./Error";
-import { motion, AnimatePresence } from "framer-motion";
 
 const url = `${baseUrL}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=24`;
 
