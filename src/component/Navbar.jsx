@@ -34,7 +34,7 @@ function Navbar({ navIcon, handleNav }) {
               </h2>
             </Link>
             <NavLink to="/" className="text-lg ">
-              Home
+              Ho
             </NavLink>
             <NavLink to="houses" className="text-lg ">
               Properties
