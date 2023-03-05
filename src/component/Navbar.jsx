@@ -33,10 +33,10 @@ function Navbar({ navIcon, handleNav }) {
                 </span>
               </h2>
             </Link>
-            <NavLink to="/" className="text-lg">
+            <NavLink to="/" className="text-lg ">
               Home
             </NavLink>
-            <NavLink to="houses" className="text-lg">
+            <NavLink to="houses" className="text-lg ">
               Properties
             </NavLink>
           </nav>
