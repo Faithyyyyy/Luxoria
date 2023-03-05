@@ -90,10 +90,10 @@ function PropertyDetails() {
                       </button>
                     </Link>
                     <h3 className="font-medium uppercase mt-3 mb-3">
-                      {homeDetails?.category[1].name}
+                      {/* {homeDetails.category[1]?.name} */}
                     </h3>
                     <h2 className="font-medium text-2xl lg:text-3xl italic mb-6">
-                      {homeDetails?.location[2].name}
+                      {/* {homeDetails.location[2]?.name} */}
                     </h2>
                   </div>
                   <div>
