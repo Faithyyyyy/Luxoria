@@ -71,58 +71,54 @@ function PropertyDetails() {
               />
             </div>
           ) : (
-            <>
-              {
-                <article className="md:pt-36 xl:pt-42 max-w-7xl mx-auto">
-                  <div className="md:flex justify-between items-center">
-                    <div className="pt-10 ">
-                      <Link to="/houses">
-                        <button className=" flex gap-2 items-center justify-center border border-customDarkBlue rounded px-4 py-2 cursor-pointer">
-                          <AiOutlineLeft />
-                          Back
-                        </button>
-                      </Link>
-                      <h3 className="font-medium uppercase mt-3 mb-3">
-                        {details?.category[1]?.name}
-                      </h3>
-                      <h2 className="font-medium text-2xl lg:text-3xl italic mb-6">
-                        {details?.location[2]?.name}
-                      </h2>
-                    </div>
-                    <div>
-                      <p className="text-[#8CB9D7] font-semibold text-xl md:text-3xl">
-                        ₦{details?.price.toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="xl:flex  xl:h-[500px]  gap-9 ">
-                    <img
-                      src={details?.coverPhoto?.url}
-                      alt=""
-                      className="w-full max-w-lg xl:max-w-2xl mx-auto"
-                    />
-                    <div className="hidden xl:flex flex-col flex-grow  relative">
-                      <img
-                        src={details?.photos[1]?.url}
-                        alt=""
-                        className="h-[250px]"
-                      />
-                      <img
-                        src={details?.photos[2]?.url}
-                        alt=""
-                        className="h-[248px]"
-                      />
-                      <button
-                        className="btn absolute right-20 px-5 py-3 rounded bottom-5"
-                        onClick={handleOpenModal}
-                      >
-                        Click Here for more Images
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              }
-            </>
+            <article className="md:pt-36 xl:pt-42 max-w-7xl mx-auto">
+              <div className="md:flex justify-between items-center">
+                <div className="pt-10 ">
+                  <Link to="/houses">
+                    <button className=" flex gap-2 items-center justify-center border border-customDarkBlue rounded px-4 py-2 cursor-pointer">
+                      <AiOutlineLeft />
+                      Back
+                    </button>
+                  </Link>
+                  <h3 className="font-medium uppercase mt-3 mb-3">
+                    {details?.category[1]?.name}
+                  </h3>
+                  <h2 className="font-medium text-2xl lg:text-3xl italic mb-6">
+                    {details?.location[2]?.name}
+                  </h2>
+                </div>
+                <div>
+                  <p className="text-[#8CB9D7] font-semibold text-xl md:text-3xl">
+                    ₦{details?.price.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+              <div className="xl:flex  xl:h-[500px]  gap-9 ">
+                <img
+                  src={details?.coverPhoto?.url}
+                  alt=""
+                  className="w-full max-w-lg xl:max-w-2xl mx-auto"
+                />
+                <div className="hidden xl:flex flex-col flex-grow  relative">
+                  <img
+                    src={details?.photos[1]?.url}
+                    alt=""
+                    className="h-[250px]"
+                  />
+                  <img
+                    src={details?.photos[2]?.url}
+                    alt=""
+                    className="h-[248px]"
+                  />
+                  <button
+                    className="btn absolute right-20 px-5 py-3 rounded bottom-5"
+                    onClick={handleOpenModal}
+                  >
+                    Click Here for more Images
+                  </button>
+                </div>
+              </div>
+            </article>
           )}
         </div>
         <div className="mt-14 px-5 xl:px-0 max-w-7xl mx-auto xl:mt-72 ">
