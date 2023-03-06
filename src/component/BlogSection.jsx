@@ -36,9 +36,12 @@ function Blog() {
           Always Check Our Latest Blog
         </h2>
         <div>
-          {blogs.map((blog) => {
+          {blogs.map((blog, i) => {
             return (
-              <article className="flex flex-col mb-10 max-w-lg mx-auto lg:mx-0 lg:mb-0 lg:flex-row items-end lg:mt-4 gap-3">
+              <article
+                key={i}
+                className="flex flex-col mb-10 max-w-lg mx-auto lg:mx-0 lg:mb-0 lg:flex-row items-end lg:mt-4 gap-3"
+              >
                 <img
                   src={blog.blogImg}
                   alt=""
