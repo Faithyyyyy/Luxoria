@@ -94,7 +94,6 @@ function PropertyDetails() {
                         ₦{details?.price.toLocaleString()}
                       </p>
                     </div>
-                  </div>
                   <div className="xl:flex  xl:h-[500px]  gap-9 ">
                     <img
                       src={details?.coverPhoto?.url}
