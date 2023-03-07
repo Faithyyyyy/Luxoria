@@ -18,6 +18,7 @@ function Houses() {
   const [error, setError] = useState(false);
   const [checkFilteredItems, setCheckFilteredItems] = useState(false);
   const [FilteredItems, setFilteredItems] = useState([]);
+
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -64,9 +65,18 @@ function Houses() {
     });
     setFilteredItems(newDataSet);
   };
+  // A function to filter the category of the properties
+  const filterCategory = (cats) => {
+    setCheckFilteredItems(true);
+    const category = dataset.filter((category) => {
+      return category.category[1].nameSingular === cats;
+    });
+    setFilteredItems(category);
+  };
   if (error) {
     return <ErrorPage />;
   }
+
   return (
     <>
       <section className="pb-28  max-w-7xl mx-auto xl:px-0 pt-16 md:pt-36 font-poppins px-5 grid gap-12">
@@ -86,6 +96,7 @@ function Houses() {
               dataset={dataset}
               FilteredItems={FilteredItems}
               filterPropertiesPrice={filterPropertiesPrice}
+              filterCategory={filterCategory}
             />
             <div className="houses-container flex-grow">
               {checkFilteredItems

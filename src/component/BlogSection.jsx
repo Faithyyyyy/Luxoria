@@ -2,7 +2,6 @@ import blog1 from "../assets/blog1.png";
 import blog2 from "../assets/blog2.png";
 import blog3 from "../assets/blog3.png";
 import blog4 from "../assets/blog4.png";
-import { forwardRef } from "react";
 
 function Blog() {
   const blogs = [
@@ -25,14 +24,20 @@ function Blog() {
   return (
     <section className="px-5 max-w-7xl mx-auto font-poppins py-24 lg:flex gap-10 xl:gap-0 xl:justify-between">
       <div className="hidden lg:block max-w-[550px]">
-        <img src={blog1} alt="" className="w-full" />
-        <p className="mt-9 text-2xl font-semibold">
+        <h3 className="text-lg mb-7 lg:text-2xl hidden lg:block">
+          BLOG & ARTICLE
+        </h3>
+        <h2 className="text-2xl font-bold lg:text-4xl xl:text-5xl mb-10 hidden lg:block">
+          Always Check Our Latest Blog
+        </h2>
+        <img src={blog1} alt="" className=" hidden lg:block w-full" />
+        <p className="hidden lg:block mt-9 text-2xl font-semibold">
           This is the Appearance of the Interior of the Newest...
         </p>
       </div>
-      <div className="max-w-2xl mx-auto lg:max-w-lg lg:mx-0">
-        <h3 className="text-lg mb-7 lg:text-2xl">BLOG & ARTICLE</h3>
-        <h2 className="text-2xl font-bold lg:text-4xl xl:text-5xl mb-10">
+      <div className="max-w-lg mx-auto lg:max-w-lg lg:mx-0 lg:self-center">
+        <h3 className="text-lg mb-7 lg:text-2xl lg:hidden">BLOG & ARTICLE</h3>
+        <h2 className="text-2xl font-bold lg:text-4xl xl:text-5xl mb-10 lg:hidden">
           Always Check Our Latest Blog
         </h2>
         <div>
@@ -40,7 +45,7 @@ function Blog() {
             return (
               <article
                 key={i}
-                className="flex flex-col mb-10 max-w-lg mx-auto lg:mx-0 lg:mb-0 lg:flex-row items-end lg:mt-4 gap-3"
+                className="flex flex-col mb-10 max-w-lg mx-auto lg:mx-0 lg:mb-0 lg:flex-row lg:items-end lg:mt-8 mt-10 gap-3 "
               >
                 <img
                   src={blog.blogImg}

@@ -1,6 +1,11 @@
+import { useState } from "react";
 import filter from "../assets/filter.png";
 
-function filterSection({ filterPropertiesPrice, dataset, FilteredItems }) {
+function filterSection({ filterPropertiesPrice, dataset, filterCategory }) {
+  const uniqueCats = [
+    ...new Set(dataset.map((item) => item.category[1].nameSingular)),
+  ];
+
   return (
     <section className=" w-[250px] hidden xl:block font-poppins">
       <div className="flex gap-4 items-center mb-4">
@@ -42,6 +47,22 @@ function filterSection({ filterPropertiesPrice, dataset, FilteredItems }) {
         >
           above - ₦10,000,000
         </p>
+      </div>
+      <div className="mt-16">
+        <h4 className="font-semibold mb-10 underline">By Category</h4>
+        {uniqueCats.map((cats) => {
+          return (
+            <p
+              key={cats}
+              className="mb-5 text-lg cursor-pointer"
+              onClick={() => {
+                filterCategory(cats);
+              }}
+            >
+              {cats}
+            </p>
+          );
+        })}
       </div>
     </section>
   );

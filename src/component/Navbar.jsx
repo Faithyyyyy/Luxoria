@@ -42,7 +42,7 @@ function Navbar({ navIcon, handleNav }) {
           </nav>
           <div className="">
             <a
-              href=""
+              href="#"
               className="bg-customDarkBlue text-white h-10 flex px-6 rounded-sm items-center"
             >
               Contact Us
