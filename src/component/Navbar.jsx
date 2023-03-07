@@ -60,7 +60,7 @@ function Navbar({ navIcon, handleNav }) {
           >
             LUXORIA{" "}
             <span className="font-medium block tracking-[4.5px] text-sm lg:tracking-[6.5px] ">
-              PROPERTIES
+              FIND PROPERTIES
             </span>
           </h2>
           <div
