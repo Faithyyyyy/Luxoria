@@ -23,7 +23,6 @@ function Houses() {
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   let yyyy = today.getFullYear();
   today = mm + dd + yyyy;
-  console.log(today);
 
   // Initial fetching of data
   const fetchData = async () => {
@@ -33,7 +32,8 @@ function Houses() {
       try {
         const response = await axios.get(url, {
           headers: {
-            "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+            "X-RapidAPI-Key": import.meta.env.VITE_API_KEYS,
+            "X-RapidAPI-Host": "bayut.p.rapidapi.com",
           },
         });
         const data = response.data.hits;
