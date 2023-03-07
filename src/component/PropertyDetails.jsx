@@ -20,7 +20,9 @@ function PropertyDetails() {
     try {
       const response = await axios.get(url, {
         headers: {
-          "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+          // "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+          "X-RapidAPI-Key":
+            "a5b008000amsh780ac9c2a083a52p11ff9bjsnf7fa4ae6df97",
           "X-RapidAPI-Host": "bayut.p.rapidapi.com",
         },
       });
