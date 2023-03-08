@@ -41,9 +41,9 @@ function PropertyDetails() {
   }
 
   // Logic for the MOREIMAGES btn
-  const handleOpenModal = () => {
+  function handleOpenModal() {
     setOpenModal(!openModal);
-  };
+  }
   const handleCloseModal = () => {
     setOpenModal(false);
   };
